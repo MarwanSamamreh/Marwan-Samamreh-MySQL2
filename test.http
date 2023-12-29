@@ -1,0 +1,84 @@
+#     required fields: title, isbn, publisher_id
+#     optional fields: year, author, pages
+#     publisher_id should be an id of existing publisher
+#     isbn should be unique
+# Create a new book
+POST http://localhost:3000/books
+Content-Type: application/json
+
+{
+  "title": "Test21",
+  "isbn": "9780345391807",
+  "PublisherId": 9,
+  "author": "Douglas Adams"
+}
+
+### Search for a book
+GET http://localhost:3000/books/search?query=the
+
+### Get all books
+GET http://localhost:3000/books
+
+# should return publisher information and comments as well
+### Get a specific book by ID
+GET http://localhost:3000/books/14
+
+
+### Update a book by ID
+PUT http://localhost:3000/books/19
+Content-Type: application/json
+
+{
+  "title": " hello 1",
+  "pages": 224
+}
+
+# should delete book comment’s as well
+### Delete a book by ID
+DELETE http://localhost:3000/books/15
+
+# required fields: name
+# optional fields: country
+### Create a new publisher
+POST http://localhost:3000/publishers
+Content-Type: application/json
+
+{
+ "name": "Mystic Pages Publishers2",
+"country": "India"
+}
+
+### Get all publishers
+GET http://localhost:3000/publishers
+
+### Get a specific publisher by ID
+GET http://localhost:3000/publishers/8
+
+# should not delete publisher if it has any published books
+### Delete a publisher by ID
+DELETE http://localhost:3000/publishers/2
+
+### GetBooksByPublisher
+GET http://localhost:3000/publishers/2/books
+
+### Delete a  comment
+DELETE  http://localhost:3000/comments/25
+
+#    required fields: name, comment, book_id
+#    optional fields: stars
+#    book_id should be an id of existing book
+### Create a new comment
+POST http://localhost:3000/comments
+Content-Type: application/json
+
+{
+  "name": "HappyReader2",
+  "comment": "Enjoyable2!",
+  "BookId": 16
+}
+
+# should return top 10 books sorted by AVG stars
+# comments without star should be ignored
+### Get top-rated books
+
+GET http://localhost:3000/books/top-rated
