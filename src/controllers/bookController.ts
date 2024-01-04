@@ -18,6 +18,7 @@ export const createBook = async (req: Request, res: Response) => {
         .status(400)
         .json({ error: error.details.map((err) => err.message) });
     }
+
     const { title, isbn, PublisherId, year, author, pages } = req.body as Book;
 
     const isbnExist = await BookModel.findOne({ where: { isbn } });
@@ -32,6 +33,8 @@ export const createBook = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Publisher not found" });
     }
 
+    // const userId = req.userId;
+
     const newBook = await BookModel.create({
       title,
       isbn,
@@ -39,9 +42,10 @@ export const createBook = async (req: Request, res: Response) => {
       year,
       author,
       pages,
+      // userId,
     });
 
-    // const bookData = newBook.get() as Book;
+    //const bookData = newBook.get() as Book;
     res.json(newBook);
   } catch (error) {
     console.error(error);

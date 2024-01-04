@@ -1,9 +1,10 @@
 import express from "express";
 import * as bookController from "../controllers/bookController";
+import { authenticate } from "../middlewares/authenticate";
 
 const router = express.Router();
 
-router.post("/", bookController.createBook);
+router.post("/", authenticate, bookController.createBook);
 router.get("/", bookController.getAllBooks);
 router.get("/search", bookController.searchBooks);
 router.get("/top-rated", bookController.getTopRatedBooks);

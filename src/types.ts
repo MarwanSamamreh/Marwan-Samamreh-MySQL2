@@ -8,6 +8,7 @@ export type Book = {
   pages?: number;
   Publisher?: Publisher;
   Comments?: Comment[];
+  userId?: number;
 };
 
 export type Comment = {
@@ -24,4 +25,16 @@ export type Publisher = {
   name: string;
   country?: string;
   Books?: Book[];
+};
+
+export type User = {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+};
+
+export type Session = {
+  sid: string;
+  userId?: number;
 };

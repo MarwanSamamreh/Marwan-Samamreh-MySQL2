@@ -28,6 +28,9 @@ const Book = sequelize.define(
     pages: {
       type: DataTypes.INTEGER.UNSIGNED,
     },
+    userId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+    },
   },
   {
     timestamps: false,

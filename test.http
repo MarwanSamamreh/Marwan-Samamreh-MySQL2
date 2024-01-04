@@ -4,13 +4,46 @@
 #     isbn should be unique
 # Create a new book
 POST http://localhost:3000/books
+Authorization: 50867f1d-60e2-42d6-a9fd-a0c78c459046
 Content-Type: application/json
 
 {
-  "title": "Test21",
-  "isbn": "9780345391807",
-  "PublisherId": 9,
-  "author": "Douglas Adams"
+  "title": "Test3",
+  "isbn": "9780345391801",
+  "PublisherId": 1,
+  "author": "Marwan Samamreh"
+}
+
+###
+POST http://localhost:3000/users/sign-up
+Content-Type: application/json
+
+{
+  "username": "MarwanTest6",
+  "email": "marwan@test.com",
+  "password": "123124"
+}
+
+###
+post http://localhost:3000/users/sign-in
+Content-Type: application/json
+
+{
+  "username": "MarwanTest6",
+  "password": "123124"
+}
+
+### Sign Out
+GET http://localhost:3000/users/sign-out
+Authorization: 0b193e76-8e66-4be0-91cd-2c34aa441ffc
+
+
+POST http://localhost:3000/customers/rent-book
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoyLCJpYXQiOjE3MDQyODE1OTAsImV4cCI6MTcwNDI4MTcxMH0.TK5x6cQL_vvhp62FDDM7VeDjTSev3tdi7dBLkoOUNA8
+Content-Type: application/json
+
+{
+  "bookId": 1
 }
 
 ### Search for a book
@@ -35,7 +68,7 @@ Content-Type: application/json
 
 # should delete book comment’s as well
 ### Delete a book by ID
-DELETE http://localhost:3000/books/15
+DELETE http://localhost:3000/books/2
 
 # required fields: name
 # optional fields: country
@@ -44,8 +77,8 @@ POST http://localhost:3000/publishers
 Content-Type: application/json
 
 {
- "name": "Mystic Pages Publishers2",
-"country": "India"
+ "name": "Marwan",
+"country": "Palestine"
 }
 
 ### Get all publishers
@@ -56,7 +89,7 @@ GET http://localhost:3000/publishers/8
 
 # should not delete publisher if it has any published books
 ### Delete a publisher by ID
-DELETE http://localhost:3000/publishers/2
+DELETE http://localhost:3000/publishers/9
 
 ### GetBooksByPublisher
 GET http://localhost:3000/publishers/2/books
