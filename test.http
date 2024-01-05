@@ -1,53 +1,55 @@
+
+### Sign Up
+POST http://localhost:3000/users/signup
+Content-Type: application/json
+
+{
+  "username": "marwan",
+  "email": "marwan@test.com",
+  "password": "123123"
+}
+
+### Sign In
+POST http://localhost:3000/users/signin
+Content-Type: application/json
+
+{
+  "username": "Marwan",
+  "password": "123456"
+}
+
+### Sign Out
+GET http://localhost:3000/users/signout
+Authorization: d4fbec47-0d09-449a-8284-c2f6b3259c7e
+
+### Change Password
+PUT http://localhost:3000/users/changePassword
+Authorization: 26ba53af-ae5c-4874-afe6-ee381f01d97b
+Content-Type: application/json
+
+{
+  "currentPassword": "123456",
+  "newPassword": "121212",
+  "confirmPassword": "121212"
+}
+
 #     required fields: title, isbn, publisher_id
 #     optional fields: year, author, pages
 #     publisher_id should be an id of existing publisher
 #     isbn should be unique
 # Create a new book
+###
 POST http://localhost:3000/books
-Authorization: 50867f1d-60e2-42d6-a9fd-a0c78c459046
+Authorization: 0acd530e-1753-4c60-8aeb-c5786ed6c334
 Content-Type: application/json
 
 {
-  "title": "Test3",
-  "isbn": "9780345391801",
+  "title": "Test7",
+  "isbn": "9780344391410",
   "PublisherId": 1,
   "author": "Marwan Samamreh"
 }
 
-###
-POST http://localhost:3000/users/sign-up
-Content-Type: application/json
-
-{
-  "username": "MarwanTest6",
-  "email": "marwan@test.com",
-  "password": "123124"
-}
-
-###
-post http://localhost:3000/users/sign-in
-Content-Type: application/json
-
-{
-  "username": "MarwanTest6",
-  "password": "123124"
-}
-
-### Sign Out
-GET http://localhost:3000/users/sign-out
-Authorization: 0b193e76-8e66-4be0-91cd-2c34aa441ffc
-
-
-POST http://localhost:3000/customers/rent-book
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoyLCJpYXQiOjE3MDQyODE1OTAsImV4cCI6MTcwNDI4MTcxMH0.TK5x6cQL_vvhp62FDDM7VeDjTSev3tdi7dBLkoOUNA8
-Content-Type: application/json
-
-{
-  "bookId": 1
-}
-
-### Search for a book
-GET http://localhost:3000/books/search?query=the
 
 ### Get all books
 GET http://localhost:3000/books

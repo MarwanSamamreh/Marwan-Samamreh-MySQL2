@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { Book } from "../types";
+import { Book, Session } from "../types";
 import BookModel from "../models/books";
 import PublisherModel from "../models/publishers";
 import CommentModel from "../models/comments";
+import SessionModel from "../models/session";
 import sequelize from "../config/database";
 import { Op } from "sequelize";
 import { bookSchema } from "../utils/validate";
@@ -33,7 +34,12 @@ export const createBook = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Publisher not found" });
     }
 
-    // const userId = req.userId;
+    const sessionId = req.headers.authorization;
+    const session = (await SessionModel.findOne({
+      where: { sid: sessionId },
+    })) as unknown as Session;
+
+    const userId = session.userId;
 
     const newBook = await BookModel.create({
       title,
@@ -42,7 +48,7 @@ export const createBook = async (req: Request, res: Response) => {
       year,
       author,
       pages,
-      // userId,
+      userId,
     });
 
     //const bookData = newBook.get() as Book;

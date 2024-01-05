@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import SessionModel from "../models/session";
-import { Session } from "inspector";
 
 export const authenticate = async (
   req: Request,
@@ -20,11 +19,11 @@ export const authenticate = async (
       where: { sid: sessionId },
     });
 
-    if (session) {
-      next();
-    } else {
-      res.status(401).json({ error: "Unauthorized" });
+    if (!session) {
+      return res.status(401).json({ error: "Unauthorized" });
     }
+
+    next();
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
