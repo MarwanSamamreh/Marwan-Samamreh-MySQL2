@@ -24,16 +24,13 @@ export const signUp = async (req: Request, res: Response) => {
 
     const { username, email, password } = req.body;
 
-    // Check if the username is already taken
     const usernameExists = await UserModel.findOne({ where: { username } });
     if (usernameExists) {
       return res.status(400).json({ error: "Username is already taken" });
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
     const newUser = (await UserModel.create({
       username,
       password: hashedPassword,
