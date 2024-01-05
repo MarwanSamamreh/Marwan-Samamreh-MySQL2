@@ -1,16 +1,13 @@
 import express, { Request, Response, NextFunction } from "express";
-import session from "express-session";
+
 import bookRoutes from "./routes/books";
 import commentRoutes from "./routes/comments";
 import publisherRoutes from "./routes/publishers";
 import usersRoutes from "./routes/users";
 import sequelize from "./config/database";
-import Sequelize from "sequelize";
-import dotenv from "dotenv";
 
 const app = express();
 const PORT = 3000;
-dotenv.config();
 
 sequelize
   .authenticate()
