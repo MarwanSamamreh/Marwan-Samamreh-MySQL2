@@ -4,7 +4,7 @@ POST http://localhost:3000/users/signup
 Content-Type: application/json
 
 {
-  "username": "marwan",
+  "username": "marwan3",
   "email": "marwan@test.com",
   "password": "123123"
 }
@@ -14,13 +14,13 @@ POST http://localhost:3000/users/signin
 Content-Type: application/json
 
 {
-  "username": "Marwan",
-  "password": "123456"
+  "username": "Marwan3",
+  "password": "123123"
 }
 
 ### Sign Out
 GET http://localhost:3000/users/signout
-Authorization: d4fbec47-0d09-449a-8284-c2f6b3259c7e
+Authorization: 9d516e72-136a-4ac7-bc7f-480bb2deaa3d
 
 ### Change Password
 PUT http://localhost:3000/users/changePassword

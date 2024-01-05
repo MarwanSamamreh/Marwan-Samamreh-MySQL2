@@ -1,5 +1,4 @@
 import express, { Request, Response, NextFunction } from "express";
-
 import bookRoutes from "./routes/books";
 import commentRoutes from "./routes/comments";
 import publisherRoutes from "./routes/publishers";

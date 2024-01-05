@@ -25,6 +25,7 @@ export const signUp = async (req: Request, res: Response) => {
     const { username, email, password } = req.body;
 
     const usernameExists = await UserModel.findOne({ where: { username } });
+
     if (usernameExists) {
       return res.status(400).json({ error: "Username is already taken" });
     }
@@ -39,13 +40,12 @@ export const signUp = async (req: Request, res: Response) => {
 
     const sessionId = uuidv4();
 
-    const sessionData = {
+    const sessionData = (await SessionModel.create({
       sid: sessionId,
       userId: newUser.id,
-    } as unknown as Session;
+    })) as unknown as Session;
 
-    const result = await SessionModel.create(sessionData);
-    res.json({ newUser, result });
+    res.json({ newUser, sessionData });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error2" });
@@ -62,25 +62,25 @@ export const signIn = async (req: Request, res: Response) => {
         .status(400)
         .json({ error: error.details.map((err) => err.message) });
     }
+
     const { username, password } = req.body;
 
     const user = (await UserModel.findOne({
       where: { username },
     })) as User | null;
+
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ error: "Invalid Username or Password" });
     }
 
     const sessionId = uuidv4();
 
-    const sessionData = {
+    const sessionData = (await SessionModel.create({
       sid: sessionId,
       userId: user.id,
-    } as unknown as Session;
+    })) as unknown as Session;
 
-    const result = await SessionModel.create(sessionData);
-
-    res.json({ message: "Sign in successful", result });
+    res.json({ message: "Sign in successful", sessionData });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -100,6 +100,7 @@ export const signOut = async (req: Request, res: Response) => {
     }
 
     const userId = session.userId;
+
     const deletedSessions = await SessionModel.destroy({
       where: { userId },
     });
@@ -140,6 +141,7 @@ export const changePassword = async (req: Request, res: Response) => {
         .status(400)
         .json({ error: error.details.map((err) => err.message) });
     }
+
     const { currentPassword, newPassword, confirmPassword } = req.body;
 
     if (!(await bcrypt.compare(currentPassword, user.password))) {
