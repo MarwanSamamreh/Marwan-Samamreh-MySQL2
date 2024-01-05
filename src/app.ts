@@ -8,26 +8,9 @@ import sequelize from "./config/database";
 import Sequelize from "sequelize";
 import dotenv from "dotenv";
 
-// import SessionSequelize from "express-session-sequelize";
-
 const app = express();
 const PORT = 3000;
 dotenv.config();
-
-// app.use(
-//   session({
-//     secret:
-//       "0db08d4cd8646fe86298d6868772e243c71f4276335be0f855cc784e3fceb844c3e9f825d00ecec55b27ed75a2e54331f469760b7a94422c5184788f39186279",
-//     resave: false,
-//     saveUninitialized: false,
-//     name: "sessionId",
-//     cookie: {
-//       httpOnly: true,
-//       secure: false,
-//       maxAge: 60 * 60 * 1000,
-//     },
-//   })
-// );
 
 sequelize
   .authenticate()
