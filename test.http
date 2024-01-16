@@ -4,7 +4,7 @@ POST http://localhost:3000/users/signup
 Content-Type: application/json
 
 {
-  "username": "marwan3",
+  "username": "marwan5",
   "email": "marwan@test.com",
   "password": "123123"
 }
@@ -14,8 +14,8 @@ POST http://localhost:3000/users/signin
 Content-Type: application/json
 
 {
-  "username": "Marwan3",
-  "password": "123123"
+  "username": "Marwan5",
+  "password": "121212"
 }
 
 ### Sign Out
@@ -24,11 +24,11 @@ Authorization: 9d516e72-136a-4ac7-bc7f-480bb2deaa3d
 
 ### Change Password
 PUT http://localhost:3000/users/changePassword
-Authorization: 26ba53af-ae5c-4874-afe6-ee381f01d97b
+Authorization: 76e013bd-c68d-4179-8c5e-a80691008fb8
 Content-Type: application/json
 
 {
-  "currentPassword": "123456",
+  "currentPassword": "123123",
   "newPassword": "121212",
   "confirmPassword": "121212"
 }
@@ -40,12 +40,12 @@ Content-Type: application/json
 # Create a new book
 ###
 POST http://localhost:3000/books
-Authorization: 0acd530e-1753-4c60-8aeb-c5786ed6c334
+Authorization: a9e420fa-3d9b-48c6-afbb-16e736d6e2ca
 Content-Type: application/json
 
 {
   "title": "Test7",
-  "isbn": "9780344391410",
+  "isbn": "9780314391410",
   "PublisherId": 1,
   "author": "Marwan Samamreh"
 }

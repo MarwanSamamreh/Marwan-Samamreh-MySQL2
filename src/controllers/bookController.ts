@@ -34,13 +34,6 @@ export const createBook = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Publisher not found" });
     }
 
-    const sessionId = req.headers.authorization;
-    const session = (await SessionModel.findOne({
-      where: { sid: sessionId },
-    })) as unknown as Session;
-
-    const userId = session.userId;
-
     const newBook = await BookModel.create({
       title,
       isbn,
@@ -48,10 +41,8 @@ export const createBook = async (req: Request, res: Response) => {
       year,
       author,
       pages,
-      userId,
     });
 
-    //const bookData = newBook.get() as Book;
     res.json(newBook);
   } catch (error) {
     console.error(error);

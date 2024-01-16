@@ -101,6 +101,7 @@ export const signOut = async (req: Request, res: Response) => {
 
     const userId = session.userId;
 
+    // log out from current session
     const deletedSessions = await SessionModel.destroy({
       where: { userId },
     });
